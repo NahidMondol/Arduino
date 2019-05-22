@@ -5,37 +5,37 @@
   When the potentiometer reaches its max value, the red light will turn on.
 */
 
-int r = 8;
-int g = 9;
-int b = 10;
-int p = A5;
-int v = 0;
+int r = 8; //Red LED conntected to pin 8
+int g = 9; //Green LED conntected to pin 9
+int b = 10; //Blue LED conntected to pin 10
+int p = A5; //Potentiometer conntected to analog pin A5
+int v = 0; //variable to keep track of potentiometer value
 void setup()
 {
   Serial.begin(9600);
-  pinMode(r, OUTPUT);
-  pinMode(g, OUTPUT);
-  pinMode(b, OUTPUT);
-  pinMode(p, INPUT);
+  pinMode(r, OUTPUT); //set red led as an output
+  pinMode(g, OUTPUT); //set green led as an output
+  pinMode(b, OUTPUT); //set blue led as an output
+  pinMode(p, INPUT);  //set potentiometer as an input
 }
 
 void loop()
 {
-  int v = analogRead(p);
-  if (v == 1023)
+  v = analogRead(p); //read the value from the potentiomemter and assign it to v
+  if (v == 1023) //if the potentiomemter reaches its max value
   {
-    analogWrite(g, v / 10);
-    digitalWrite(r, HIGH);
-    digitalWrite(b, LOW);
+    analogWrite(g, v / 10); //set the green led equal to potentiometer value / 10 due to resistance
+    digitalWrite(r, HIGH); //turn on the red led
+    digitalWrite(b, LOW); //turn off the blue led
   }
   else
   {
-    digitalWrite(r, LOW);
-    digitalWrite(b, LOW);
+    digitalWrite(r, LOW); //turn off the red led
+    digitalWrite(b, LOW); //turn off the blue led
     analogWrite(g, v / 10);
-    if(v == 0)
+    if(v == 0)  //if the potentiometer reaches its minimum value
     {
-    digitalWrite(b, HIGH);
+    digitalWrite(b, HIGH); //turn on the blue led
     analogWrite(g, v / 10);
     }
   }
