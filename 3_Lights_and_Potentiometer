@@ -1,0 +1,33 @@
+/*
+  A bread board contains a red led, a green led and a potentiometer. The input value of the potentiometer determines the 
+  brightness of the green led on the board. When the potentiometer reaches its max value (furthest it can turn), then the
+  red led light turns on. If the potentiometer is turned back down, the red light will turn off.
+*/
+
+int r = 8;
+int g = 9;
+int p = A5;
+int v = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(r, OUTPUT);
+  pinMode(g, OUTPUT);
+  pinMode(p, INPUT);
+}
+
+void loop()
+{
+  int v = analogRead(p);
+  if (v == 1023)
+  {
+    digitalWrite(r, HIGH);
+    analogWrite(g, v / 10);
+  }
+  else
+  {
+    digitalWrite(r, LOW);
+    analogWrite(g, v / 10);
+  }
+}
