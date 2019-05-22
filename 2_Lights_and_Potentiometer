@@ -1,0 +1,42 @@
+/*
+  A breadboard that contains a red led, a green led, a blue led, and a potentiometer. When the potentiometer is turned to
+  its lowest value, the blue light will turn on, and the two other lights will be off. When the value of the potentiometer is
+  increased, the blue light will turn off, while the green light adjusts brightness based off of the value of the potentiometer.
+  When the potentiometer reaches its max value, the red light will turn on.
+*/
+
+int r = 8;
+int g = 9;
+int b = 10;
+int p = A5;
+int v = 0;
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(r, OUTPUT);
+  pinMode(g, OUTPUT);
+  pinMode(b, OUTPUT);
+  pinMode(p, INPUT);
+}
+
+void loop()
+{
+  int v = analogRead(p);
+  if (v == 1023)
+  {
+    analogWrite(g, v / 10);
+    digitalWrite(r, HIGH);
+    digitalWrite(b, LOW);
+  }
+  else
+  {
+    digitalWrite(r, LOW);
+    digitalWrite(b, LOW);
+    analogWrite(g, v / 10);
+    if(v == 0)
+    {
+    digitalWrite(b, HIGH);
+    analogWrite(g, v / 10);
+    }
+  }
+}
