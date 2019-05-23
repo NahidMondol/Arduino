@@ -1,6 +1,7 @@
 /*
-  A breadboard that contains a red led, a green led, and a photoresistor. As more light reaches the photoresistor, the resistance is increased. The resistance
-  of the photoresistor is stored in the variable 'light'. When the photoresistor detects light below 150, the red led will turn on. If the photoresistor detects
+  A breadboard that contains a red led, a green led, and a photoresistor. As more light reaches the photoresistor, 
+  the resistance is increased. The resistance of the photoresistor is stored in the variable 'light'. 
+  When the photoresistor detects light below 150, the red led will turn on. If the photoresistor detects
   light more than 150, the red light will turn off and the green light will turn on.
 */
 
