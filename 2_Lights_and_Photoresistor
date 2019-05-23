@@ -1,0 +1,36 @@
+/*
+  A breadboard that contains a red led, a green led, and a photoresistor. As more light reaches the photoresistor, the resistance is increased. The resistance
+  of the photoresistor is stored in the variable 'light'. When the photoresistor detects light below 150, the red led will turn on. If the photoresistor detects
+  light more than 150, the red light will turn off and the green light will turn on.
+*/
+
+int pr = A0;   //photoresistor connected to pin A0 
+int g = 2;     //green led connected to pin 2
+int r = 3;     //red led connected to pin 3
+int light = 0; //variable to hold the resistance of the photoresistor
+
+void setup() 
+{
+  Serial.begin(9600);
+  pinMode(g, OUTPUT); //sets the green led as an output
+  pinMode(r, OUTPUT); //sets the red led as an output
+  pinMode(pr, INPUT); //sets the photoresistor as an input
+}
+
+void loop() 
+{
+  light = analogRead(pr); //sets the resistance of the photoresistor to the variable light
+  delay(100); //delays the process 100 miliseconds
+  if(light > 150) //if the light detected is higher than 150
+  {
+    digitalWrite(g, HIGH); //set the green led on
+    digitalWrite(r, LOW);  //set the red led off
+    Serial.println(light); //output the values of the light (troubleshooting)
+  }
+  else
+  {
+    digitalWrite(g, LOW);  //set the green led off
+    digitalWrite(r, HIGH); //set the red led on
+    Serial.println(light); //output the values of the light (troubleshooting)
+  }
+}
