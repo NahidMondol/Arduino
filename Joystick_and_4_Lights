@@ -1,0 +1,85 @@
+/*
+  A breadboard which contains an arduino uno, a joystick, 2 green leds and 2 red leds. The 2 green leds indicate the x and y value of the joystick
+  if it surpasses a certain direction and the 2 red leds indicate if they surpass in the other direction. The four different lights indicate what
+  direction the user is moving the joystick. If the joystick is left untouched, the lights will be off. If the user clicks the joystick, all 4
+  lights will turn on.
+*/
+  
+const int Click = 2; //digital pin connected to the switch output
+const int X = A7;    //analog pin connected to the x output 
+const int Y = A6;    //analog pin connected to the y output
+const int xH = 12;   //green light for the x direction
+const int xL = 10;   //red light for the x direction
+const int yH = 11;   //green light for the y direction
+const int yL = 9;    //red light for the y direction
+
+void setup() 
+{
+  Serial.begin(115200);
+  pinMode(Click, INPUT); //sets the joystick click as an input
+  digitalWrite(Click, HIGH); //sets the joystick click on
+  pinMode(X, INPUT); //sets the x-axis joystick as an input
+  pinMode(Y, INPUT); //sets the y-axis joystick as an input
+  pinMode(xH, OUTPUT); //sets the green x light as an output
+  pinMode(xL, OUTPUT); //sets the red x light as an output
+  pinMode(yH, OUTPUT); //sets the green y light as an output
+  pinMode(yL, OUTPUT); //sets the red y light as an output
+}
+
+void loop() 
+{
+  int xNum = analogRead(X); //variable for the joystick direction of the x-axis
+  int yNum = analogRead(Y); //variable for the joystick direction of the y-axis
+  int isClicked = digitalRead(Click); //variable to hold the value of the clicked button
+  
+  //if the joystick is left in the middle or untouched (General middle area)
+  if(xNum <= 515 && xNum >= 480)
+  {
+    digitalWrite(xH, LOW); //set the green light in the x direction off
+    digitalWrite(xL, LOW); //set the red light in the y direction off
+  }
+  else
+  {
+    //If the joystick is moved in the positive x direction
+    if(xNum > 516)
+    {
+      digitalWrite(xH, HIGH); //set the green light in the x direction on
+      digitalWrite(xL, LOW);  //set the red light in the x direction off
+    }
+    else
+    {
+      digitalWrite(xH, LOW);  //set the green light in the x direction off
+      digitalWrite(xL, HIGH); //set the red light in the x direction on
+    }
+  }
+  
+  //if the joystick is left in the middle or untouched (General middle area)
+  if(yNum <= 515 && yNum >= 480)
+  {
+    digitalWrite(yH, LOW); //set the green light in the y direction off
+    digitalWrite(yL, LOW); //set the red light in the y direction off
+  }
+  else
+  {
+    //If the joystick is moved in the positive y direction
+    if(yNum > 516)
+    {
+      digitalWrite(yH, HIGH); //set the green light in the y direction on
+      digitalWrite(yL, LOW);  //set the red light in the y direction off
+    }
+    else
+    {
+      digitalWrite(yH, LOW);  //set the green light in the y direction off
+      digitalWrite(yL, HIGH); //set the red light in the y direction on
+    }
+  }
+  
+  //if the joystick is clicked
+  if(isClicked == 0)
+  {
+    digitalWrite(xH, HIGH); //set the green light in the x direction on
+    digitalWrite(xL, HIGH); //set the red light in the x direction on
+    digitalWrite(yH, HIGH); //set the green light in the y direction on
+    digitalWrite(yL, HIGH); //set the red light in the y direction on
+  }
+}
