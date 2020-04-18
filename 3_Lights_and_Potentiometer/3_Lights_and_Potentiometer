@@ -24,7 +24,7 @@ void loop()
   v = analogRead(p); //read the value from the potentiomemter and assign it to v
   if (v == 1023) //if the potentiomemter reaches its max value
   {
-    analogWrite(g, v / 10); //set the green led equal to potentiometer value / 10 due to resistance
+    analogWrite(g, v / 10); //set the green led equal to (potentiometer value / 10) due to resistance
     digitalWrite(r, HIGH); //turn on the red led
     digitalWrite(b, LOW); //turn off the blue led
   }
@@ -35,8 +35,8 @@ void loop()
     analogWrite(g, v / 10);
     if(v == 0)  //if the potentiometer reaches its minimum value
     {
-    digitalWrite(b, HIGH); //turn on the blue led
-    analogWrite(g, v / 10);
+      digitalWrite(b, HIGH); //turn on the blue led
+      analogWrite(g, v / 10);
     }
   }
 }
