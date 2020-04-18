@@ -6,8 +6,8 @@
   VRX is the x-axis of the joystick and should be connected to an analog pin because the value is adjustable.
   VRY is the y-axis of the joystick and should be connected to an analog pin because the value is adjustable.
   SW represents when the joystick is pressed down/clicked and should be connected to a digital pin
-  This program allows the user see the x,y and click values represented by a number when the user 
-  moves the joystick.
+  This program allows the user see the x, y and click values represented by a number when the user 
+  interacts with the joystick.
  */
 
 const int Click = 2; //digital pin connected to switch output
